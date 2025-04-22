@@ -154,4 +154,48 @@
       box.innerHTML = `
         <img src="${person.avatar || 'https://via.placeholder.com/60'}" class="avatar" />
         <div><strong>${person.name}</strong></div>
-        <div class="info">${person.position}</div
+        <div class="info">${person.position}</div>
+      `;
+      box.onclick = () => showModal(person);
+      return box;
+    }
+
+    function showModal(person) {
+      document.getElementById("modalTitle").textContent = person.name;
+      document.getElementById("modalPosition").textContent = person.position || "";
+      document.getElementById("modalDob").textContent = "Ngày sinh: " + (person.dob || "Không rõ");
+      document.getElementById("modalPhone").textContent = "SĐT: " + (person.phone || "Không rõ");
+      document.getElementById("modal").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    document.getElementById("leaderRow").appendChild(createBox(data.leader));
+
+    data.deputies.forEach(dep => {
+      document.getElementById("deputyRow").appendChild(createBox(dep));
+    });
+
+    data.teams.forEach(team => {
+      const box = document.createElement("div");
+      box.className = "box";
+      box.innerHTML = `<strong>${team.name}</strong>`;
+      const memberList = document.createElement("div");
+      memberList.className = "members";
+      team.members.forEach(member => {
+        const memberDiv = document.createElement("div");
+        memberDiv.textContent = `${member.position}: ${member.name}`;
+        memberDiv.style.cursor = "pointer";
+        memberDiv.onclick = () => showModal(member);
+        memberList.appendChild(memberDiv);
+      });
+      box.appendChild(memberList);
+      document.getElementById("teamRow").appendChild(box);
+    });
+  </script>
+</body>
+</html>
