@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <title>Thu nhập Taxi hàng ngày</title>
   <style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(35%) sepia(76%) saturate(2217%) hue-rotate(160deg) brightness(92%) contrast(87%);
+  cursor: pointer;
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 16px;
+}
+
     body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 10px; }
     h2 { text-align: center; }
     label { display: block; margin-top: 10px; }
